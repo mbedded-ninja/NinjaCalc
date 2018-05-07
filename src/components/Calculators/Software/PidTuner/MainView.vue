@@ -323,6 +323,7 @@ import SpringMassDamperProcessTxt from './Processes/SpringMassDamperProcess.txt'
 import UserDefinedProcessTxt from './Processes/UserDefinedProcess.txt'
 
 import { Pid, IntegralLimitModes } from './Pid'
+import OgImage from './og-image.png'
 
 const SimulationRunModes = {
   MANUAL_CONTROL_CV: 'Manual CV Control (no PID)',
@@ -332,6 +333,15 @@ const SimulationRunModes = {
 
 export default {
   name: 'pid-tuner',
+  // Meta info, used by the vue-meta plugin
+  metaInfo: {
+    meta: [
+      { charset: 'utf-8' },
+      { vmid: 'og:title', property: 'og:title', content: 'PID Tuner' },
+      { vmid: 'og:image', property: 'og:image', content: OgImage },
+      { vmid: 'description', name: 'description', content: 'A tool to help you tune a PID controller. Can simulate both predefined and user-defined process/plants/systems. Incl. real-time graphs of simulation.' }
+    ]
+  },
   components: {
     vueSlider
   },

@@ -15,6 +15,9 @@ import VTooltip from 'v-tooltip'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
+
+import Meta from 'vue-meta'
+
 import CalcValue from '@/misc/CalculatorEngineV2/view/CalcValue.vue'
 import CalcValueAndUnit from './misc/CalculatorEngineV2/view/CalcValueAndUnit.vue'
 import CalcUnits from './misc/CalculatorEngineV2/view/CalcUnits.vue'
@@ -34,23 +37,11 @@ import InfoCollapsible from '@/components/InfoCollapsible/InfoCollapsible'
 Vue.config.productionTip = false
 
 Vue.use(VueMaterial)
-
-// Setup v-select component
-
 Vue.component('v-select', vSelect)
-
-// KeenUI is used for the collapsable "Info"
-// sections on each calculator
-
 Vue.use(KeenUI)
-
-// v-tooltip is used for calculator variable tooltips
-
 Vue.use(VTooltip)
-
-// element UI component library
-
 Vue.use(ElementUI)
+Vue.use(Meta)
 
 // =========================================== //
 // ========== VUE GOOGLE MAPS PACKAGE ======== //
@@ -94,11 +85,25 @@ Vue.component('InfoCollapsible', InfoCollapsible)
 // =========================================== //
 sync(store, router)
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  store,
-  router,
-  components: { App },
-  template: '<App/>'
+// Recommended by https://github.com/chrisvfritz/prerender-spa-plugin
+// so that prerender-spa-plugin does not output the contents of the page
+// before the JS runs
+document.addEventListener('DOMContentLoaded', function () {
+  /* eslint-disable no-new */
+  new Vue({
+    el: '#app',
+    store,
+    router,
+    components: { App },
+    template: '<App/>'
+  })
+// console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Setting attribute...')
+// document.querySelector('#app').setAttribute('data-server-rendered', 'true')
+// console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Done.')
 })
+
+// window.snapSaveState = () => {
+//   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Setting attribute...')
+//   document.querySelector('#app').setAttribute('data-server-rendered', 'true')
+//   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Done.')
+// }

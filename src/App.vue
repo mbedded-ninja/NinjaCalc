@@ -62,6 +62,13 @@ import { pidTuner } from '@/components/Calculators/Software/PidTuner/Calc'
 
 export default {
   name: 'app',
+  metaInfo: {
+    title: 'NinjaCalc',
+    meta: [
+      { charset: 'utf-8' },
+      { vmid: 'description', name: 'description', content: 'Test description' }
+    ]
+  },
   components: {
     LeftSideMenu,
     CalculatorSelectionOverlay
@@ -108,10 +115,10 @@ export default {
     // (i.e. whenever the route path changes)
     // This function performs the state change required due to the route object changing
     handleRouteChange () {
-      // Check to see if route is in the form "/tool/<calculator-name>"
-      var pattern = /^\/tool\//g
-      var regex = new RegExp(pattern)
-      var exec = regex.exec(this.route.path)
+      // Check to see if route is in the form "/tool/<tool-name>"
+      let pattern = /^\/tool\//g
+      let regex = new RegExp(pattern)
+      let exec = regex.exec(this.route.path)
       console.log('exec = ')
       console.log(exec)
       if(!exec) {
@@ -120,16 +127,20 @@ export default {
         return
       }
       console.log('regex.lastIndex = ' + regex.lastIndex)
-      var calcName = this.route.path.substring(regex.lastIndex)
-      console.log('calcName = ' + calcName)
+      let toolName = this.route.path.substring(regex.lastIndex)
+      // Remove any trailing forward-slash. This is needed because
+      // using prerender-spa-plugin causes a '/' to be added to the end of
+      // tool routes
+      toolName = toolName.replace(/\//g, '')
+      console.log('toolName = ' + toolName)
       // Make sure path is valid calculator
-//        const calcName = this.route.path.substring(1, this.route.path.length)
+//        const toolName = this.route.path.substring(1, this.route.path.length)
       var foundCalc = this.$store.state.core.availableCalcs.find((element) => {
-        return element.mainView.name === calcName
+        return element.mainView.name === toolName
       })
       if (!foundCalc) {
-        // If no calculator was found, fail silently
-        console.error('Calculator "' + calcName + '" was not found.')
+        // If no tool was found, fail
+        console.error('Tool "' + toolName + '" was not found.')
         return
       }
 
@@ -138,10 +149,10 @@ export default {
         trueFalse: false
       })
 
-      // Calc was found, so open calculator
+      // Tool was found, so open it!
       this.$store.dispatch('openCalc', {
         // Remove the first "/"
-        componentName: calcName
+        componentName: toolName
       })
     }
   },

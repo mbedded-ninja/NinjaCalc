@@ -60,11 +60,13 @@ See the [project home page](http://mbedded-ninja.github.io/NinjaCalc/) for a lis
 - d3: Used in the two coordinate geodesic calculator.
 - element-ui@1.4.13: NOTE. Tabs are specific to used version. v2 doesn't seem to work.
 - keen-ui: Buttons used.
+- prerender-spa-plugin: Used to prerender routes to tools (e.g. /tool/pid-tuner) so that they are SEO friendly.
 - topojson-client: Used in the two coordinate geodesic calculator.
 - v-tooltip: Tooltips.
 - versor: Used in the two coordinate geodesic calculator.
 - vue2-google-maps: Used in the map plotter tool.
 - vue-material@0.7.5: Buttons, tooltips used, sidenav used. NOTE: Sidenav not available in latest version.
+- vue-meta: Used to update tags within the HTML head (e.g. title, description, image) with a vue component.
 - vue-select: General purpose UI select element.
 - vue-slider-component: Sliders used in the PID tuner tool.
 - vuex: Centralized state management for app.

@@ -10,6 +10,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
+// Renders headlessly in a downloaded version of Chromium through puppeteer
+const PuppeteerRenderer = PrerenderSPAPlugin.PuppeteerRenderer
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -119,7 +122,14 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+
+    // Added by gbmhunter. 2018-05-04
+    new PrerenderSPAPlugin({
+      staticDir: path.resolve(__dirname, '../dist'), // The path to the folder where index.html is.
+      routes: ['/', '/tool/pid-tuner'], // List of routes to prerender.
+      renderer: new PuppeteerRenderer()
+    })
   ]
 })
 
