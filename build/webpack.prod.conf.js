@@ -128,7 +128,25 @@ const webpackConfig = merge(baseWebpackConfig, {
     new PrerenderSPAPlugin({
       staticDir: path.resolve(__dirname, '../dist'), // The path to the folder where index.html is.
       routes: ['/', '/tool/pid-tuner'], // List of routes to prerender.
-      renderer: new PuppeteerRenderer()
+      // postProcess (renderedRoute) {
+      //   // Ignore any redirects.
+      //   // renderedRoute.path = renderedRoute.originalPath
+      //   // Basic whitespace removal. (Don't use this in production.)
+      //   // renderedRoute.html = renderedRoute.html.split(/>[\s]+</gmi).join('><')
+      //   // Remove /index.html from the output path if the dir name ends with a .html file extension.
+      //   // For example: /dist/dir/special.html/index.html -> /dist/dir/special.html
+      //   console.log('renderedRoute =')
+      //   console.log(renderedRoute)
+      //   renderedRoute.route = renderedRoute.originalRoute        
+      //   return renderedRoute
+      // },
+      renderer: new PuppeteerRenderer({
+        injectProperty: '__PRERENDER_INJECTED',
+        inject: {
+          on: true
+        },
+        headless: false, // Displays the pre-rendering process during build
+      })
     })
   ]
 })

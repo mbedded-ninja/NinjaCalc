@@ -1,6 +1,9 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
+  # Set a base URL for rewrites
+  # RewriteBase /
+  # The - passes the request through unchanged. L means if the
+  # rule matches, no further rules will be proccessed
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

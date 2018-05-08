@@ -47,15 +47,19 @@ Vue.use(Meta)
 // ========== VUE GOOGLE MAPS PACKAGE ======== //
 // =========================================== //
 
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: 'AIzaSyBSBFQ3KuKEfQNXSAhQ1uhjVa1gXbHSlwk',
-    libraries: 'places' // This is required if you use the Autocomplete plugin
-    // OR: libraries: 'places,drawing'
-    // OR: libraries: 'places,drawing,visualization'
-    // (as you require)
-  }
-})
+// We only want to include this component once, as it inserts a script tag in the html,
+// and Google maps complains that it has been added twice and unexpected events may occur
+if (!window.hasOwnProperty('__PRERENDER_INJECTED')) {
+  Vue.use(VueGoogleMaps, {
+    load: {
+      key: 'AIzaSyBSBFQ3KuKEfQNXSAhQ1uhjVa1gXbHSlwk',
+      libraries: 'places' // This is required if you use the Autocomplete plugin
+      // OR: libraries: 'places,drawing'
+      // OR: libraries: 'places,drawing,visualization'
+      // (as you require)
+    }
+  })
+}
 
 // =========================================== //
 // ==== CALCULATOR COMPONENT REGISTRATION ==== //

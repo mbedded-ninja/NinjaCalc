@@ -323,7 +323,8 @@ import SpringMassDamperProcessTxt from './Processes/SpringMassDamperProcess.txt'
 import UserDefinedProcessTxt from './Processes/UserDefinedProcess.txt'
 
 import { Pid, IntegralLimitModes } from './Pid'
-import OgImage from './og-image.png'
+// import OgImage from './og-image.png'
+var OgImage = require('./og-image.png')
 
 const SimulationRunModes = {
   MANUAL_CONTROL_CV: 'Manual CV Control (no PID)',
