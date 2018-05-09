@@ -167,6 +167,9 @@ export default {
 
     console.log('NinjaCalc app mounted.')
 
+    // console.log('Sending info to Google Analytics...')
+    // this.$ga.page('/')
+
     // ============================================ //
     // ========== ELECTRONICS -> BASIC ============ //
     // ============================================ //

@@ -18,6 +18,8 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 
 import Meta from 'vue-meta'
 
+import VueAnalytics from 'vue-analytics'
+
 import CalcValue from '@/misc/CalculatorEngineV2/view/CalcValue.vue'
 import CalcValueAndUnit from './misc/CalculatorEngineV2/view/CalcValueAndUnit.vue'
 import CalcUnits from './misc/CalculatorEngineV2/view/CalcUnits.vue'
@@ -42,6 +44,16 @@ Vue.use(KeenUI)
 Vue.use(VTooltip)
 Vue.use(ElementUI)
 Vue.use(Meta)
+
+// =========================================== //
+// ========== GOOGLE ANALYTICS SETUP ========= //
+// =========================================== //
+
+Vue.use(VueAnalytics, {
+  id: 'UA-92834105-1', // Analytics ID for NinjaCalc (see Analytics settings)
+  router,
+  checkDuplicatedScript: true // This is useful to prevent duplicate script loading when prerendering
+})
 
 // =========================================== //
 // ========== VUE GOOGLE MAPS PACKAGE ======== //
@@ -101,13 +113,4 @@ document.addEventListener('DOMContentLoaded', function () {
     components: { App },
     template: '<App/>'
   })
-// console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Setting attribute...')
-// document.querySelector('#app').setAttribute('data-server-rendered', 'true')
-// console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Done.')
 })
-
-// window.snapSaveState = () => {
-//   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Setting attribute...')
-//   document.querySelector('#app').setAttribute('data-server-rendered', 'true')
-//   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Done.')
-// }
