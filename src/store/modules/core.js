@@ -38,7 +38,7 @@ const mutations = {
     }
     state.calcsFilteredByCategoryAndSearch = state.calcsFilteredByCategory.filter(calc => {
       // Create regex pattern from search text
-      var regex = new RegExp(state.searchText, 'gi')
+      const regex = new RegExp(state.searchText, 'gi')
       // Search in calculator title (display name)
       if (calc.displayName.match(regex)) return true
       // Search through the tags
@@ -51,8 +51,10 @@ const mutations = {
     state.selCategory = category
   },
   openCalc (state, payload) {
+    console.log('openCalc() called with payload =')
+    console.log(payload)
     // Find a unique ID to use
-    var maxId = 0
+    let maxId = 0
     state.openCalcs.forEach((calc, index) => {
       if (calc.uniqueId > maxId) {
         maxId = calc.uniqueId
@@ -61,7 +63,7 @@ const mutations = {
     const newUniqueId = maxId + 1
 
     // Check to make sure componentName is valid
-    var foundCalc = state.availableCalcs.find((element) => {
+    const foundCalc = state.availableCalcs.find((element) => {
       return element.mainView.name === payload.componentName
     })
     if (!foundCalc) {

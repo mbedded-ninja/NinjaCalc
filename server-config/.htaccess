@@ -6,8 +6,12 @@
   # The - passes the request through unchanged. L means if the
   # rule matches, no further rules will be proccessed
   RewriteRule ^index\.html$ - [L]
+  RewriteRule ^(.*)/$ /$1
+  # The next two lines state: If the requested file or directory does exist, proceed to the
+  # rule below:
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
+  
   # Reroute all requests to the root-level index.html
   # (since this is a SPA)
   RewriteRule . /index.html [L]

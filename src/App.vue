@@ -131,7 +131,9 @@ export default {
       // Remove any trailing forward-slash. This is needed because
       // using prerender-spa-plugin causes a '/' to be added to the end of
       // tool routes
-      toolName = toolName.replace(/\//g, '')
+      // EDIT 2018-05-09, gbmhunter: Trailing slash removal not needed anymore,
+      // fixed prerender-spa-plugin to not add '/'     
+      // toolName = toolName.replace(/\//g, '')
       console.log('toolName = ' + toolName)
       // Make sure path is valid calculator
 //        const toolName = this.route.path.substring(1, this.route.path.length)
