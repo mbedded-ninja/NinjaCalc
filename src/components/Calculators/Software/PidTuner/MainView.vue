@@ -316,7 +316,6 @@
 
 <script>
 import Chart from 'chart.js'
-import vueSlider from 'vue-slider-component'
 
 import * as Constants from '@/Config.js'
 import RcJetEngineProcessTxt from './Processes/RcJetEngineProcess.txt'
@@ -337,16 +336,14 @@ export default {
   name: 'pid-tuner',
   // Meta info, used by the vue-meta plugin
   metaInfo: {
-    meta: [      
+    meta: [
       { vmid: 'og:title', property: 'og:title', content: 'PID Tuner' },
       { vmid: 'og:type', property: 'og:type', content: 'website' },
       { vmid: 'og:image', property: 'og:image', content: Constants.HOSTNAME + OgImagePath },
       { vmid: 'description', name: 'description', content: 'A tool to help you tune a PID controller. Can simulate both predefined and user-defined process/plants/systems. Incl. real-time graphs of simulation.' }
     ]
   },
-  components: {
-    vueSlider
-  },
+  components: {},
   data () {
     return {
       processes: [

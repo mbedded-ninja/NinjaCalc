@@ -15,6 +15,7 @@ import VTooltip from 'v-tooltip'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import VueSlider from 'vue-slider-component'
 
 import Meta from 'vue-meta'
 
@@ -44,6 +45,7 @@ Vue.use(KeenUI)
 Vue.use(VTooltip)
 Vue.use(ElementUI)
 Vue.use(Meta)
+Vue.component('vue-slider', VueSlider)
 
 // =========================================== //
 // ========== GOOGLE ANALYTICS SETUP ========= //
