@@ -30,7 +30,7 @@
     "react-tooltip": "^4.2.10",
     "react-treebeard": "^3.2.4",
     "stonecutter": "^0.3.10-rc",
-    "three": "^0.109.0"
+    "three": "^0.125.0"
   },
   "devDependencies": {
     "babel-plugin-root-import": "^6.4.1",
